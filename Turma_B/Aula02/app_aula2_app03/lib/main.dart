@@ -40,10 +40,10 @@ class Telaresponsive extends StatelessWidget {
                     child: Text('Menu'),
                   ),
                   ListTile(
-                    title: Text('Item 1'),
+                    title: Text('Tela 1'),
                   ),
                   ListTile(
-                    title: Text('Item 2'),
+                    title: Text('Tela 2'),
                   ),
                 ],
               ),
@@ -74,11 +74,12 @@ class Telaresponsive extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Screen width: $screen_width'),
-                  Text('Screen height: $screen_height'),
-                  if (isMobile) Text('This is a mobile view'),
-                  if (isTablet) Text('This is a tablet view'),
-                  if (isDesktop) Text('This is a desktop view'),
+                  Container(color: Colors.red,height: screen_height*0.5,width: screen_width*0.5,),
+                  Text('Screen width: $screen_width',style: TextStyle(fontSize: screen_width*0.1),),
+                  Text('Screen height: $screen_height',style: TextStyle(fontSize: screen_width*0.1)),
+                  if (isMobile) Text('This is a mobile view',style: TextStyle(fontSize: screen_width*0.1)),
+                  if (isTablet) Text('This is a tablet view',style: TextStyle(fontSize: screen_width*0.02)),
+                  if (isDesktop) Text('This is a desktop view',),
                 ],
               ),
             ),
