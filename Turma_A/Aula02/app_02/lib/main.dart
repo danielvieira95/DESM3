@@ -37,9 +37,48 @@ class Tela1 extends StatelessWidget {
            )
           ],
         ),
-      ),
+      ):null,
+      body: Row(
+        children: [
+          if(!isMobile)
+          Container(
+            width: isTablet?200:200,
+            color: Colors.blue,
+            child: ListView(
+             children: [
+              DrawerHeader(
+                child: Text("Menu"),
+                
+              ),
+              ListTile(
+                  title: Text("Item 1"),
+                ),
+                ListTile(
+                  title: Text("Item 2"),
+                )
+             ], 
+            ),
+          ),
+          Expanded(child: 
+          Center(
+            child: Column(
+              children: [
+                Container(color: Colors.red,height: screen_height*0.5,width: screen_width*0.7,),
+                  Text('Screen width: $screen_width',style: TextStyle(fontSize: screen_width*0.04),),
+                  Text('Screen height: $screen_height',style: TextStyle(fontSize: screen_width*0.04)),
+                  if (isMobile) Text('This is a mobile view',style: TextStyle(fontSize: screen_width*0.04)),
+                  if (isTablet) Text('This is a tablet view',style: TextStyle(fontSize: screen_width*0.04)),
+                  if (isDesktop) Text('This is a desktop view',style:TextStyle(fontSize: screen_width*0.04)),
+              ],
+            ),
+          )
+          ),         
+        ],
+      
+      ),     
       
     );
+    
   }
   }
 
