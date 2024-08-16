@@ -1,3 +1,5 @@
+import 'package:appcardapiorestaurante/component/Highlights_item.dart';
+import 'package:appcardapiorestaurante/screens/Food_screen.dart';
 import 'package:appcardapiorestaurante/screens/Highlight.dart';
 import 'package:appcardapiorestaurante/themas/appcolors.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +13,12 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _currentpage = 0; // cria a variavel para o bottom navigator
+  static  List<Widget> _widgetop =[
+   Highlight(),
+   Food_screen(),
+  ];
+
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,6 +40,7 @@ class _HomeState extends State<Home> {
       },child: Icon(Icons.point_of_sale),
       
       ),
+      
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>
         [  
@@ -54,14 +63,16 @@ class _HomeState extends State<Home> {
               index =0;
             }
             _currentpage = index;
-
+          
           });
           
         },
 
         
         ),
-        body: Highlight(),
+        body: Center(
+          child: _widgetop.elementAt(_currentpage),
+        ),
     );
   }
 }
