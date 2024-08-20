@@ -19,8 +19,13 @@ class Highlight_items extends StatelessWidget {
      child: Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Image(image: AssetImage(img),fit: BoxFit.cover,), // box determina o preenchimento
-        // da imagem 
+        Image(
+            
+              image: AssetImage(img),
+              fit: BoxFit.cover,
+            ), // box determina o preenchimento
+            // da imagem  ,
+               
         Padding(padding: EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
