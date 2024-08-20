@@ -1,6 +1,7 @@
 import 'package:appcardapiorestaurante/component/Highlights_item.dart';
 import 'package:appcardapiorestaurante/screens/Food_screen.dart';
 import 'package:appcardapiorestaurante/screens/Highlight.dart';
+import 'package:appcardapiorestaurante/screens/drink_screen.dart';
 import 'package:appcardapiorestaurante/themas/appcolors.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,7 @@ class _HomeState extends State<Home> {
   static  List<Widget> _widgetop =[
    Highlight(),
    Food_screen(),
+   Drink_screen(),
   ];
 
   
