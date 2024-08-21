@@ -1,3 +1,5 @@
+import 'package:app_restaurante/screen/Drinkscreen.dart';
+import 'package:app_restaurante/screen/Foodscreen.dart';
 import 'package:app_restaurante/screen/Highlights.dart';
 import 'package:app_restaurante/themas/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +12,11 @@ class Home extends StatefulWidget {
 }
 
 class _homeState extends State<Home> {
+  List<Widget> telas=[
+  Highlights(),
+  Food_screen(),
+  Drink_screen(),
+  ];
   int _currentpage = 0; // index da pagina atual
   @override
   Widget build(BuildContext context) {
@@ -62,7 +69,9 @@ class _homeState extends State<Home> {
           });
         },
       ),
-      body: const Highlights(),
+      body: Center(
+        child: telas.elementAt(_currentpage),
+      )
     );
       
     
