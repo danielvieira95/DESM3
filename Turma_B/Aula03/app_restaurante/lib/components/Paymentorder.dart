@@ -18,7 +18,7 @@ const PaymentMethod({ Key? key }) : super(key: key);
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               const Text("VISA Classic", style: TextStyle(fontWeight: FontWeight.w500),),
-              Text("****-6789", style: TextStyle(color: AppColors.paymentMethodCardNumberColor.paymentMethodCardNumberColor),),
+              Text("****-6789", style: TextStyle(color: AppColors.paymentMethodCardNumberColor),),
             ],
           ),
         ),
