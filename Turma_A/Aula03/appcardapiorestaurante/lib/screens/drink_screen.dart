@@ -1,6 +1,5 @@
 import 'package:appcardapiorestaurante/cardapio.dart';
 import 'package:appcardapiorestaurante/component/Drink.dart';
-import 'package:appcardapiorestaurante/component/Food.dart';
 import 'package:flutter/material.dart';
 
 /*class Drink_screen extends StatelessWidget {
