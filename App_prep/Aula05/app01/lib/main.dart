@@ -1,63 +1,101 @@
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_gauges/gauges.dart';
 
-/// Flutter code sample for [GestureDetector].
+void main() {
+  return runApp(GaugeApp());
+}
 
-void main() => runApp(const GestureDetectorExampleApp());
-
-class GestureDetectorExampleApp extends StatelessWidget {
-  const GestureDetectorExampleApp({super.key});
-
+/// Represents the GaugeApp class
+class GaugeApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: GestureDetectorExample(),
+    return MaterialApp(
+      title: 'Radial Gauge Demo',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: MyHomePage(),
     );
   }
 }
 
-class GestureDetectorExample extends StatefulWidget {
-  const GestureDetectorExample({super.key});
+/// Represents MyHomePage class
+class MyHomePage extends StatefulWidget {
+  /// Creates the instance of MyHomePage
+  MyHomePage({Key? key}) : super(key: key);
 
   @override
-  State<GestureDetectorExample> createState() => _GestureDetectorExampleState();
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _GestureDetectorExampleState extends State<GestureDetectorExample> {
-  bool _lightIsOn = false;
+class _MyHomePageState extends State<MyHomePage> {
+  Widget _getGauge({bool isRadialGauge = true}) {
+    if (isRadialGauge) {
+      return _getRadialGauge();
+    } else {
+      return _getLinearGauge();
+    }
+  }
+
+  Widget _getRadialGauge() {
+    return SfRadialGauge(
+        title: GaugeTitle(
+            text: 'Speedometer',
+            textStyle:
+                const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+        axes: <RadialAxis>[
+          RadialAxis(minimum: 0, maximum: 150, ranges: <GaugeRange>[
+            GaugeRange(
+                startValue: 0,
+                endValue: 50,
+                color: Colors.green,
+                startWidth: 10,
+                endWidth: 10),
+            GaugeRange(
+                startValue: 50,
+                endValue: 100,
+                color: Colors.orange,
+                startWidth: 10,
+                endWidth: 10),
+            GaugeRange(
+                startValue: 100,
+                endValue: 150,
+                color: Colors.red,
+                startWidth: 10,
+                endWidth: 10)
+          ], pointers: <GaugePointer>[
+            NeedlePointer(value: 80)
+          ], annotations: <GaugeAnnotation>[
+            GaugeAnnotation(
+                widget: Container(
+                    child: const Text('80.0',
+                        style: TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.bold))),
+                angle: 90,
+                positionFactor: 0.5)
+          ])
+        ]);
+  }
+
+  Widget _getLinearGauge() {
+    return Container(
+      child: SfLinearGauge(
+          minimum: 0.0,
+          maximum: 100.0,
+          orientation: LinearGaugeOrientation.horizontal,
+          majorTickStyle: LinearTickStyle(length: 20),
+          axisLabelStyle: TextStyle(fontSize: 12.0, color: Colors.black),
+          axisTrackStyle: LinearAxisTrackStyle(
+              color: Colors.cyan,
+              edgeStyle: LinearEdgeStyle.bothFlat,
+              thickness: 15.0,
+              borderColor: Colors.grey)),
+      margin: EdgeInsets.all(10),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        alignment: FractionalOffset.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Icon(
-                Icons.lightbulb_outline,
-                color: _lightIsOn ? Colors.yellow.shade600 : Colors.black,
-                size: 60,
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  // Toggle light when tapped.
-                  _lightIsOn = !_lightIsOn;
-                });
-              },
-              child: Container(
-                color: Colors.yellow.shade600,
-                padding: const EdgeInsets.all(8),
-                // Change button text when light changes state.
-                child: Text(_lightIsOn ? 'TURN LIGHT OFF' : 'TURN LIGHT ON'),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+        appBar: AppBar(title: const Text('Syncfusion Flutter Gauge')),
+        body: _getGauge());
   }
 }
