@@ -1,101 +1,112 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_gauges/gauges.dart';
+import 'package:knob_widget/knob_widget.dart';
 
 void main() {
-  return runApp(GaugeApp());
+  runApp(MyApp());
 }
 
-/// Represents the GaugeApp class
-class GaugeApp extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Radial Gauge Demo',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: MyHomePage(),
+      title: 'Flutter Knob Demo',
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      home: MyHomePage(title: 'Flutter Knob Demo'),
     );
   }
 }
 
-/// Represents MyHomePage class
 class MyHomePage extends StatefulWidget {
-  /// Creates the instance of MyHomePage
-  MyHomePage({Key? key}) : super(key: key);
+  MyHomePage({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
+
+  final String title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Widget _getGauge({bool isRadialGauge = true}) {
-    if (isRadialGauge) {
-      return _getRadialGauge();
-    } else {
-      return _getLinearGauge();
+  final double _minimum = 0;
+  final double _maximum = 100;
+
+  late KnobController _controller;
+  late double _knobValue;
+
+  void valueChangedListener(double value) {
+    if (mounted) {
+      setState(() {
+        _knobValue = value;
+      });
     }
   }
 
-  Widget _getRadialGauge() {
-    return SfRadialGauge(
-        title: GaugeTitle(
-            text: 'Speedometer',
-            textStyle:
-                const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
-        axes: <RadialAxis>[
-          RadialAxis(minimum: 0, maximum: 150, ranges: <GaugeRange>[
-            GaugeRange(
-                startValue: 0,
-                endValue: 50,
-                color: Colors.green,
-                startWidth: 10,
-                endWidth: 10),
-            GaugeRange(
-                startValue: 50,
-                endValue: 100,
-                color: Colors.orange,
-                startWidth: 10,
-                endWidth: 10),
-            GaugeRange(
-                startValue: 100,
-                endValue: 150,
-                color: Colors.red,
-                startWidth: 10,
-                endWidth: 10)
-          ], pointers: <GaugePointer>[
-            NeedlePointer(value: 80)
-          ], annotations: <GaugeAnnotation>[
-            GaugeAnnotation(
-                widget: Container(
-                    child: const Text('80.0',
-                        style: TextStyle(
-                            fontSize: 25, fontWeight: FontWeight.bold))),
-                angle: 90,
-                positionFactor: 0.5)
-          ])
-        ]);
-  }
-
-  Widget _getLinearGauge() {
-    return Container(
-      child: SfLinearGauge(
-          minimum: 0.0,
-          maximum: 100.0,
-          orientation: LinearGaugeOrientation.horizontal,
-          majorTickStyle: LinearTickStyle(length: 20),
-          axisLabelStyle: TextStyle(fontSize: 12.0, color: Colors.black),
-          axisTrackStyle: LinearAxisTrackStyle(
-              color: Colors.cyan,
-              edgeStyle: LinearEdgeStyle.bothFlat,
-              thickness: 15.0,
-              borderColor: Colors.grey)),
-      margin: EdgeInsets.all(10),
+  @override
+  void initState() {
+    super.initState();
+    _knobValue = _minimum;
+    _controller = KnobController(
+      initial: _knobValue,
+      minimum: _minimum,
+      maximum: _maximum,
+      startAngle: 0,
+      endAngle: 180,
+      precision: 2,
     );
+    _controller.addOnValueChangedListener(valueChangedListener);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Syncfusion Flutter Gauge')),
-        body: _getGauge());
+      appBar: AppBar(
+        title: Text(widget.title),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(_knobValue.toString()),
+            const SizedBox(height: 25),
+            ElevatedButton(
+              onPressed: () {
+                var value =
+                    Random().nextDouble() * (_maximum - _minimum) + _minimum;
+                _controller.setCurrentValue(value);
+              },
+              child: const Text('Update Knob Value'),
+            ),
+            const SizedBox(height: 75),
+            Container(
+              child: Knob(
+                controller: _controller,
+                width: 200,
+                height: 200,
+                style: KnobStyle(
+                  labelStyle: Theme.of(context).textTheme.bodyLarge,
+                  tickOffset: 5,
+                  labelOffset: 10,
+                  minorTicksPerInterval: 10,
+                  showMinorTickLabels: true,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.removeOnValueChangedListener(valueChangedListener);
+    super.dispose();
   }
 }
