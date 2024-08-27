@@ -11,10 +11,13 @@ class Food_screen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16.0,16.0,16.0,0),
+      // CustomScroll View equivale ao listview
       child: CustomScrollView(
+        // slivers equivale ao children
         slivers: [
           SliverToBoxAdapter(
-            child: Text("Menu",style: TextStyle(fontFamily: 'Caveat',fontSize: 32),
+            child: Text("Menu",style: TextStyle(fontFamily: 'Caveat',
+            fontSize: 32),
             textAlign: TextAlign.center,
             ),
           ),
