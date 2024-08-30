@@ -67,7 +67,7 @@ class _HomeState extends State<Home> {
           children: [
             Text('Knob value: ${_knobvalue.toStringAsFixed(2)}'),
             ElevatedButton(onPressed: (){
-                var value =                    Random().nextDouble() * (_maximo - _minimo) + _minimo;
+                var value = Random().nextDouble() * (_maximo - _minimo) + _minimo;
                 _controller.setCurrentValue(value);
         
             }, child: Text('Knob Value')),
