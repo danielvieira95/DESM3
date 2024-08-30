@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:knob_widget/knob_widget.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
-
+import 'dart:math';
 void main() {
   runApp(App_Knob());
 }
@@ -13,7 +13,7 @@ class App_Knob extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "App Aula05 - Knob",
-      theme: ThemeData.dark(),
+      theme: ThemeData.light(),
       home: Home(),
     );
   }
@@ -28,9 +28,9 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final double _minimo =0; // variaveis para o knob
-  final double _maximo =0;  // variaveis para o knob
+  final double _maximo =100;  // variaveis para o knob
 
-  late KnobController controller; // variavel para controle
+  late KnobController _controller; // variavel para controle
   // do knob
   late double _knobvalue;  // valor atual do knob
    // Função para atualizar o valor do knob
@@ -45,7 +45,7 @@ class _HomeState extends State<Home> {
     void initState() {
     super.initState();
     _knobvalue = _minimo; // Valor inicial do knob
-    controller = KnobController(
+    _controller = KnobController(
       initial: _knobvalue, // Valor inicial
       minimum: _minimo, // Valor mínimo
       maximum: _maximo, // Valor máximo
@@ -53,7 +53,7 @@ class _HomeState extends State<Home> {
       endAngle: 180, // Ângulo final
       precision: 2, // Precisão do knob
     );
-    controller.addOnValueChangedListener(valueChangedListener);
+    _controller.addOnValueChangedListener(valueChangedListener);
   }
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,12 +67,14 @@ class _HomeState extends State<Home> {
           children: [
             Text('Knob value: ${_knobvalue.toStringAsFixed(2)}'),
             ElevatedButton(onPressed: (){
+                var value =                    Random().nextDouble() * (_maximo - _minimo) + _minimo;
+                _controller.setCurrentValue(value);
         
             }, child: Text('Knob Value')),
             Container(
               // Widget knob
               child: Knob(
-                controller: controller,
+                controller: _controller,
                 width: 200,
                 height: 200,
               ),
@@ -145,7 +147,7 @@ class _HomeState extends State<Home> {
    @override
    // função para atualizar o gauge conforme o knob se movimenta
   void dispose() {
-    controller.removeOnValueChangedListener(valueChangedListener);
+    _controller.removeOnValueChangedListener(valueChangedListener);
     super.dispose();
 
   }
