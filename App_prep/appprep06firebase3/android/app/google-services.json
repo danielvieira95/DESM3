@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1031385518980",
+    "project_id": "projetotbexemplo",
+    "storage_bucket": "projetotbexemplo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031385518980:android:ca2c7cdae158e10eba83d1",
+        "android_client_info": {
+          "package_name": "com.aula06prepfireb"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgSki4Uz9uNmg7-kohgBWtxL8R8wtmKXo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031385518980:android:59ffb29e90fa91f8ba83d1",
+        "android_client_info": {
+          "package_name": "com.aula06prepfirebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgSki4Uz9uNmg7-kohgBWtxL8R8wtmKXo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

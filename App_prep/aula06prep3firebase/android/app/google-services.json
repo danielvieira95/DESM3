@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "781443170018",
+    "project_id": "projeto-tb",
+    "storage_bucket": "projeto-tb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:781443170018:android:3b4293ee858a2e457a28bb",
+        "android_client_info": {
+          "package_name": "com.aula06prepfirebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDth9iOlmtboMMGaPxums6KHBDv3Vf2QfU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
