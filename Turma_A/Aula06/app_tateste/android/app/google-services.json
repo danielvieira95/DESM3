@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "756081911153",
+    "project_id": "appta2-93429",
+    "storage_bucket": "appta2-93429.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:756081911153:android:b57a46be91d5c45dc0c2d0",
+        "android_client_info": {
+          "package_name": "com.fireta"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUPdM_Q7gfS72Tu5Xmbvtkjdg2I-f53Sg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
