@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "635378936819",
+    "project_id": "appta1-f1254",
+    "storage_bucket": "appta1-f1254.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:635378936819:android:f506868300e7c2459a8086",
+        "android_client_info": {
+          "package_name": "com.fireappa"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNzDanxjUPNR1IvhgdcugFFm7DJvcLwS4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
