@@ -1,3 +1,4 @@
+import 'package:app07/homescreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -10,7 +11,7 @@ void main()async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
 );
-  runApp(const MyApp());
+  runApp(MaterialApp(home: HomeScreen()));
   FirebaseFirestore firestore = FirebaseFirestore.instance; // cria instancia do firestore
   firestore.collection("Só para testar").doc("Estou testando").set({
   "Funcinou?":true,
