@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "805124674349",
+    "project_id": "apaula07a",
+    "storage_bucket": "apaula07a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805124674349:android:bdfa8ed288b8f4376a39a4",
+        "android_client_info": {
+          "package_name": "com.firea"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCIExhzB4gvWlKrmBal-C0YLPSx1Ikrk8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
