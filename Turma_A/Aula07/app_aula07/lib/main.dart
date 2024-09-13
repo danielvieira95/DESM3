@@ -14,7 +14,9 @@ void main() async{
   //FirebaseFirestore firestore = FirebaseFirestore.instance;
 // f
 
-  runApp(const MyApp());
+  runApp(MaterialApp(
+    home:  Home(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -23,6 +25,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+  
     return MaterialApp(
       title: 'App Firebase',
       theme: ThemeData(       
@@ -44,25 +47,89 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   // instancia firebase
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+  TextEditingController nomeprod = TextEditingController();
+    TextEditingController qtde = TextEditingController();
+    TextEditingController valor = TextEditingController();
 
   _postFirebase(){
-    firestore.collection('Produtos').doc().set({"Nome": "PS5",
-    "Qtde": 10,
-    "Valor": 3500.00
+    firestore.collection('Produtos').doc().set({"Nome": nomeprod.text,
+    "Qtde": qtde.text,
+    "Valor": valor.text
   });
-
+    nomeprod.text="";
+    qtde.text="";
+    valor.text="";
   }
   @override
   Widget build(BuildContext context) {
+    final mediaquery = MediaQuery.of(context).size;
+    final width = mediaquery.width;
+    final height = mediaquery.height;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blueAccent,
         title: Text("App aula 07 - Firebase"),
       ),
-      body: Column(
-        children: [
-          Text('App Firebase',style: TextStyle(fontSize: 18),),
-          ElevatedButton(onPressed: _postFirebase, child: Text('Enviar'))
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('App Firebase',style: TextStyle(fontSize: 18),),
+            SizedBox(
+              child:  TextFormField(
+              controller: nomeprod,
+             keyboardType: TextInputType.name,
+             decoration: InputDecoration(
+              hintText: "Digite o nome do produto",
+              
+              border: OutlineInputBorder(
+              
+              borderRadius: BorderRadius.circular(8)),
+             )),
+             width: width/2,
+             height: height/8,
+            ),
+             SizedBox(
+              child:  TextFormField(
+              controller: qtde,
+             keyboardType: TextInputType.number,
+             decoration: InputDecoration(
+              hintText: "Digite a qtde do produto",
+              
+              border: OutlineInputBorder(
+              
+              borderRadius: BorderRadius.circular(8)),
+             )),
+             width: width/2,
+             height: height/8,
+            ),
+             SizedBox(
+              child:  TextFormField(
+              controller: valor,
+             keyboardType: TextInputType.number,
+             decoration: InputDecoration(
+              hintText: "Digite o valor do produto",
+              
+              border: OutlineInputBorder(
+              
+              borderRadius: BorderRadius.circular(8)),
+             )),
+             width: width/2,
+             height: height/8,
+            ),
+            
+            
+           
+
+            
+            ElevatedButton(onPressed: _postFirebase, child: Text('Enviar')),
+            ElevatedButton(onPressed: (){
+              print(mediaquery);
+              print(width);
+               print(height);
+            }, child: Text('Tela')),
+          ],
+        ),
       ),
 
     );
