@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1043004664362",
+    "project_id": "appaula07-caf99",
+    "storage_bucket": "appaula07-caf99.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1043004664362:android:dbab09ec9d4ddf7ca53153",
+        "android_client_info": {
+          "package_name": "com.fireb"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDy7pDrnAvihUW0iGmijKl1tl5MjBKQ6xw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
