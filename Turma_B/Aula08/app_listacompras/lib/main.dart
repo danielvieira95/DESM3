@@ -33,6 +33,18 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   // instancia o firebase
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+  List<Lista> listLista=[]; // lista para armazenar os dados enviados ao firebase
+  _refresh()async{
+    List<Lista>temp = []; // cria uma variavel vazia
+    // vai armazenar os dados do firebase em snapshot
+   QuerySnapshot<Map<String,dynamic>>snapshot = await firestore.collection("Listacompras").get();
+   for(var doc in snapshot.docs){
+    temp.add(Lista.fromMap(doc.data()));
+   }
+    setState(() {
+      listLista = temp;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,11 +56,30 @@ class _HomeScreenState extends State<HomeScreen> {
         showFormModal();
       },
       child: Icon(Icons.add),),
-      
-    );
+      body: (listLista.isEmpty)?Center(
+        child: Text("Não temos listas salvas \n Vamos criar a primeira ?",
+        textAlign: TextAlign.center,style: TextStyle(fontSize: 18),),
+
+        
+
+      ):RefreshIndicator(
+        // vai chamar uma função que atualiza os itens da lista
+        onRefresh: (){
+        return _refresh();
+        },
+        child: ListView(
+          children:List.generate(
+            listLista.length,
+            (index){
+               Lista model = listLista[index];
+               return model;
+              // Para excluir a lista
+  })),
+      ),);
 
     
   }
+  
   showFormModal({Lista?model}){
     String title = "Adicionar lista";
     String confirmButton = "Salvar";
