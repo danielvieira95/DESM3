@@ -80,7 +80,28 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 16,
             ),
-            
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                TextButton(onPressed:(){
+                  Navigator.pop(context);
+                } , child: Text(skipButton)),
+                SizedBox(
+                  height: 16,
+                ),
+                ElevatedButton(onPressed: (){
+                // cria uma variavel compra do tipo lista
+                Lista compra = Lista(id: Uuid().v1(), nome: nome_list.text);
+                // no caso de editar uma lista verifica se o model não está vazio
+                if(model!=null){
+                  compra.id = model.id;
+                }
+                firestore.collection("Listacompras").doc(compra.id).set(compra.toMap());
+                Navigator.pop(context);
+                }, child: Text(confirmButton)),
+
+              ],
+            )
           ],
 
         ),
