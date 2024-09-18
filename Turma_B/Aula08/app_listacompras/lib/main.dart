@@ -31,6 +31,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  // instancia o firebase
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,9 +40,11 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text("App aula08"),
         backgroundColor: Colors.red,
       ),
-      floatingActionButton: FloatingActionButton(onPressed: (){},
+      floatingActionButton: FloatingActionButton(onPressed: (){
+        showFormModal();
+      },
       child: Icon(Icons.add),),
-      body: ,
+      
     );
 
     
