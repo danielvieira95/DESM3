@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "521149875956",
+    "project_id": "aula08a",
+    "storage_bucket": "aula08a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:521149875956:android:4fd2925996b362481940a1",
+        "android_client_info": {
+          "package_name": "com.apa08"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfFsuWbZB2tKYOwmX9-bB2AwafVGopIic"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
