@@ -94,7 +94,14 @@ class _HomeState extends State<Home> {
                   onTap: (){
 
                   },
-                 ),
+                    onLongPress: (){
+                    showFormModal(model: model);
+                  },
+                  leading: const Icon(Icons.list_alt_rounded),
+                  title: Text(model.nome),
+                  subtitle: Text(model.id),
+                  ),
+                 
                  );
               },
               
@@ -177,3 +184,4 @@ class _HomeState extends State<Home> {
   }
 
 }
+
