@@ -170,6 +170,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   compra.id = model.id;
                 }
                 firestore.collection("Listacompras").doc(compra.id).set(compra.toMap());
+                _refresh();
                 Navigator.pop(context);
                 }, child: Text(confirmButton)),
 
