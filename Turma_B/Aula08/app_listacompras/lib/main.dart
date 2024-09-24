@@ -45,6 +45,16 @@ class _HomeScreenState extends State<HomeScreen> {
       listLista = temp;
     });
   }
+  // função que irá apagar um item do banco de dados
+  void remove(Lista model){
+   firestore.collection("Listacompras").doc(model.id).delete();
+   _refresh();
+  }
+  @override
+  void initState() {
+    _refresh();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +82,35 @@ class _HomeScreenState extends State<HomeScreen> {
             listLista.length,
             (index){
                Lista model = listLista[index];
-               return model;
+               // Dimissible comando para deslizar o elemento da lista
+               return Dismissible(
+                key: ValueKey<Lista>(model), 
+                // direção do fim para o começo
+                direction: DismissDirection.endToStart,
+                background: Container(
+                  color: Colors.red,
+                  alignment: Alignment.centerRight,
+                  child:Padding(
+                    padding: EdgeInsets.only(right: 8.0,) ,
+                    child: Icon(Icons.delete,color: Colors.white,),
+                ),),
+                onDismissed:(direction){
+                  remove(model);
+                } ,
+                
+                child: ListTile(
+                onTap: (){
+
+                },
+                onLongPress: (){
+                  showFormModal(model:model);
+                 
+                },
+                leading: Icon(Icons.list_alt_rounded),
+                title: Text(model.nome),
+                subtitle: Text(model.id),
+                ),
+                );
               // Para excluir a lista
   })),
       ),);
