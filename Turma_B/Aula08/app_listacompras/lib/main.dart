@@ -100,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 
                 child: ListTile(
                 onTap: (){
-
+                _refresh();
                 },
                 onLongPress: (){
                   showFormModal(model:model);
