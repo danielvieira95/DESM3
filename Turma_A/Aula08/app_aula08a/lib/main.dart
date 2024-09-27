@@ -4,7 +4,6 @@ import 'firebase_options.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:app_aula08a/models/models.dart';
 import 'package:uuid/uuid.dart';
-//com.apa08
 void main() async{
   //evita que de erro na tela
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,9 +26,9 @@ class _HomeState extends State<Home> {
   // cria instancia do banco de dados
    // lista para armazenar os dados enviados ao firebase
 
-  List<Lista>temp=[];
+  
   refresh()async{
-      
+      List<Lista>temp=[];
       QuerySnapshot<Map<String,dynamic>>snapshot = await firestore.collection("Listacompras").get();
       for(var doc in snapshot.docs){
         
@@ -41,7 +40,12 @@ class _HomeState extends State<Home> {
     }
     List<Lista> listLista=[];
     FirebaseFirestore firestore = FirebaseFirestore.instance;
+    CollectionReference produtos = FirebaseFirestore.instance.collection('Listacompras');
     // chama a atualização do banco de dados
+    void remove(Lista model){
+      firestore.collection("Listacompras").doc(model.id).delete();
+      refresh();
+    }
     @override
     void initState(){
       refresh();
@@ -70,12 +74,16 @@ class _HomeState extends State<Home> {
          },
          child: ListView(
           children: List.generate(
-              listLista.length, (index){
+              listLista.length, 
+              (index){
               Lista model = listLista[index];
               // exclui um elemento da lista
               return Dismissible(
                 key: ValueKey<Lista>(model),
-                
+                 onDismissed: (direction){
+                  remove(model);
+                },
+                //key: UniqueKey(),
                  direction: DismissDirection.endToStart,
                  background: Container(
                   color: Colors.red,
@@ -87,11 +95,10 @@ class _HomeState extends State<Home> {
                     
                  ),
                  // onDismissed parametro que vai determinar quanto irei mover para excluir um item
-                 onDismissed: (direction){
-
-                 },
+                
                  child: ListTile(
                   onTap: (){
+                    refresh();
 
                   },
                     onLongPress: (){
@@ -100,9 +107,10 @@ class _HomeState extends State<Home> {
                   leading: const Icon(Icons.list_alt_rounded),
                   title: Text(model.nome),
                   subtitle: Text(model.id),
-                  ),
+               
+                 ));
                  
-                 );
+                 
               },
               
               ) ,
@@ -168,6 +176,12 @@ class _HomeState extends State<Home> {
                      compra.id = model.id;
                      }
                      firestore.collection("Listacompras").doc(compra.id).set(compra.toMap());
+
+                     produtos.add({
+                      'Nome':'TV',
+                      'Valor':5000,
+                      'Qtde':10
+                     });
                      refresh();
                     
                     Navigator.pop(context);
