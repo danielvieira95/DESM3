@@ -1,3 +1,4 @@
+import 'package:app_listacompras/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -19,7 +20,7 @@ void main() async{
 //  "preço":50
 //});
   runApp(MaterialApp(
-    home: HomeScreen(),
+    home: Auth(),
   ));
 }
 
