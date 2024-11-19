@@ -49,34 +49,34 @@ class _LoginState extends State<Login> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                ElevatedButton(onPressed: (){
+                ElevatedButton(onPressed: ()async{
                   print("${email.text} e ${senha.text}");
+                   final message = await AuthService().login(
+                  email: email.text,
+                  password: senha.text,
+                );
+                if (message!.contains('Success')) {
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => TelaHome(),
+                          ),
+                        );
+                      }
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(message),
+                        ),
+                      );
+                
                         
                 }, child: Text('Login', style: TextStyle(fontSize: 18))),
                  ElevatedButton(
                     onPressed: () async{
                       email.text = "";
                       senha.text = "";
-                      final message = await AuthService().login(
-                  email: email.text,
-                  password: senha.text,
-                );
-                 Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => TelaHome()));
-                if (message!.contains('Success')) {
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) =>Home(),
-                    ),
-                  );
-                }
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(message),
-                  ),
-                );
+                     
+                 
+                      
               },
                     
                     child: Text('Limpar', style: TextStyle(fontSize: 18))),

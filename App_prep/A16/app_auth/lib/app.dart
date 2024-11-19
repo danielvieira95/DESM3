@@ -28,7 +28,15 @@ class _TelaHomeState extends State<TelaHome> {
           children: [
             
            Container(color: Colors.blue,width: 200,height:200,
-           child:Text('Bem vindo',style:TextStyle(fontSize: 18)))
+           child:Text('Bem vindo',style:TextStyle(fontSize: 18))),
+           ElevatedButton(onPressed: (){
+            AuthService().logout(                 
+                  );
+          Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Home()));
+
+
+           }, child: Text('Voltar'))
           ],
         ),
       ),

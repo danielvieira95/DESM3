@@ -46,4 +46,9 @@ class AuthService {
       return e.toString();
     }
   }
+// Logout method that calls AuthService().logout() and returns the message
+  Future<String?> logout() async {
+    final message = await AuthService().logout();
+    return message;
+  }
 }
