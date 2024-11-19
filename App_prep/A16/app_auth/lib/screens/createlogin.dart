@@ -1,5 +1,7 @@
+import 'package:app_auth/main.dart';
+import 'package:app_auth/services/auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
 class Createlogin extends StatefulWidget {
   const Createlogin({super.key});
 
@@ -43,7 +45,7 @@ class _CreateloginState extends State<Createlogin> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                    onPressed: () {
+                    onPressed: ()async {
                       print("${_email.text} e ${_senha.text}");
                       final message = await AuthService().registration(
                    email: _email.text,
@@ -51,21 +53,24 @@ class _CreateloginState extends State<Createlogin> {
                 );
                 if (message!.contains('Success')) {
                   Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => const Home()));
+                      MaterialPageRoute(builder: (context) => Home()));
                 }
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text(message),
                   ),
                 );
-                    },
+
+},
                     child: Text('Cadastrar', style: TextStyle(fontSize: 18))),
+
+
                 ElevatedButton(
                     onPressed: () {
                       _email.text = "";
                       _senha.text = "";
                     },
-                    child: Text('Limpar', style: TextStyle(fontSize: 18)))
+                    child: Text('Limpar', style: TextStyle(fontSize: 18))),
               ],
             ),
             
@@ -75,3 +80,4 @@ class _CreateloginState extends State<Createlogin> {
     );
   }
 }
+

@@ -1,5 +1,9 @@
+import 'package:app_auth/app.dart';
+import 'package:app_auth/main.dart';
 import 'package:app_auth/screens/createlogin.dart';
+import 'package:app_auth/services/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -50,17 +54,21 @@ class _LoginState extends State<Login> {
                         
                 }, child: Text('Login', style: TextStyle(fontSize: 18))),
                  ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async{
                       email.text = "";
                       senha.text = "";
                       final message = await AuthService().login(
                   email: email.text,
                   password: senha.text,
                 );
+                 Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => TelaHome()));
                 if (message!.contains('Success')) {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (context) => const Home(),
+                      builder: (context) =>Home(),
                     ),
                   );
                 }
@@ -70,8 +78,8 @@ class _LoginState extends State<Login> {
                   ),
                 );
               },
-                    },
-                    child: Text('Limpar', style: TextStyle(fontSize: 18)))
+                    
+                    child: Text('Limpar', style: TextStyle(fontSize: 18))),
               ],
             ),
             TextButton(onPressed: (){

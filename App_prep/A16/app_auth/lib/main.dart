@@ -1,15 +1,15 @@
 import 'package:app_auth/screens/login.dart';
 import 'package:flutter/material.dart';
-//import 'package:firebase_core/firebase_core.dart';
-//import 'firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 // com.prep16
-void main() {
+void main() async{
  WidgetsFlutterBinding.ensureInitialized();
   runApp(Home());
- // await Firebase.initializeApp(
-//    options: DefaultFirebaseOptions.currentPlatform,
-//);
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+);
 }
 
 class Home extends StatelessWidget {
