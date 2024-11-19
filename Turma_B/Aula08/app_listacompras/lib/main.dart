@@ -20,7 +20,7 @@ void main() async{
 //  "preço":50
 //});
   runApp(MaterialApp(
-    home: Auth(),
+    home: HomeScreen(),
   ));
 }
 
