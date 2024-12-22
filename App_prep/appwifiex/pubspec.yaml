@@ -37,7 +37,6 @@ dependencies:
   cupertino_icons: ^1.0.8
   wifi_iot: ^0.3.0
   network_info_plus: ^4.0.3
-  fl_chart: ^0.69.2
   permission_handler: ^10.3.0
 dev_dependencies:
   flutter_test:
