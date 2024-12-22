@@ -69,6 +69,7 @@ class _AccelerometerAppState extends State<AccelerometerApp> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Acelerômetro com Gráficos"),
+        backgroundColor: Colors.red,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
